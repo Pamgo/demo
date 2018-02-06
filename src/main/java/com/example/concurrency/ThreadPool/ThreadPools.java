@@ -11,7 +11,7 @@ public class ThreadPools {
 		//createCacheThreadPools();
 		//createNewFixedThreadPools();
 		//createScheduledThreadPools();
-		createNewSingleThreadExecutor();
+		createScheduledThreadPools();
 	}
 	
 	/**
@@ -41,12 +41,15 @@ public class ThreadPools {
 	 * 创建一个定长线程池，支持定时及周期性任务执行
 	 */
 	private static void createScheduledThreadPools() {
-		ScheduledExecutorService newScheduledThreadPools = Executors.newScheduledThreadPool(2);
+		ScheduledExecutorService newScheduledThreadPools = Executors.newScheduledThreadPool(4);
 		System.out.println("----------------------newScheduledThreadPool Start------------------------------");
 		for (int i = 0; i < 4; i++) {
 			
+			//写final域的重排序规则可以确保：在对象引用为任意线程可见之前，对象的final域已经被
+			//正确初始化过了，而普通域不具有这个保障
+			final int index = i;
 			// 周期线程池
-			newScheduledThreadPools.scheduleWithFixedDelay(new ThreadForPools(i), 0, 3, TimeUnit.SECONDS);
+			newScheduledThreadPools.scheduleWithFixedDelay(new ThreadForPools(index), 0, 3, TimeUnit.SECONDS);
 			
 			// 延迟线程
 			//newScheduledThreadPools.schedule(new ThreadForPools(i), 3, TimeUnit.SECONDS);
