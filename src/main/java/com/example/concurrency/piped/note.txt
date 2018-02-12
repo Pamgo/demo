@@ -1,0 +1,5 @@
+管道流：
+PipedOutputStream,PipedInputStream,PipedWriter,PipedReader
+
+管道输入流/输出流和普通文件输入/输出流的不同之处在于，它主要用于线程之间的数据传输，而传输的媒介为内存。
+
