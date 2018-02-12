@@ -28,7 +28,7 @@ public class Priority {
 			System.out.print(thread.getName());
 		} // 使用循环启动10个线程
 		notStart = false; // 十个线程启动完成后设置
-		TimeUnit.SECONDS.sleep(10); // main线程沉睡10s，使得10个小线程执行结束
+		TimeUnit.SECONDS.sleep(10); // main线程沉睡10s，使得10个小线程自由竞争到执行结束
 		notEnd = false;
 		for (Job job : jobs) {
 			System.out.println("Job Priority : " + job.priority + ", Count : " + job.jobCount);
