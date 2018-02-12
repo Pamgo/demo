@@ -6,6 +6,11 @@ import java.util.Date;
 import com.example.concurrency.SleepUtil;
 
 
+/**
+ * 生产者消费者演示
+ * @author OKali
+ *
+ */
 public class WaitNotify {
 
 	static boolean flag = true;
