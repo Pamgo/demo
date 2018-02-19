@@ -1,4 +1,4 @@
-package com.example.concurrency.threadLocal;
+package com.example.concurrency.connectionPool;
 
 import java.sql.Connection;
 import java.util.concurrent.CountDownLatch;
@@ -15,7 +15,7 @@ public class ConnectionPoolTest {
 	
 	public static void main(String[] args) throws InterruptedException {
 		// 线程数量，可以修改线程数量进行观察
-		int threadCount = 30;
+		int threadCount = 20;
 		end = new CountDownLatch(threadCount);
 		int count = 20;
 		AtomicInteger got = new AtomicInteger();
