@@ -15,7 +15,7 @@ public class DataBaseHealthChecker extends BaseHealthChecker {
 
 	@Override
 	protected void verifyService() {
-		System.out.println("Checking :" + this.getServiceName());
+		System.out.println("Checking :" + this.getServiceName() + "......");
 		
 		try {
 			Thread.sleep(7000);

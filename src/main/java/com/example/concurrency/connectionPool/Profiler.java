@@ -1,4 +1,4 @@
-package com.example.concurrency.threadLocal;
+package com.example.concurrency.connectionPool;
 
 import com.example.concurrency.SleepUtil;
 
