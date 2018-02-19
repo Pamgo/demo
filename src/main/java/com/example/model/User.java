@@ -4,6 +4,12 @@ public class User {
 	private int id;
 	private String usrname;
 	private int age;
+	
+	public User(String usrname, int age) {
+		this.usrname = usrname;
+		this.age = age;
+	}
+	
 	public int getId() {
 		return id;
 	}
