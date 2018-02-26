@@ -12,6 +12,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 银行流水处理服务类
  * @author OKali
+ * <b>场景：</b>
+ * CyclicBarrier可以用于多线程计算数据，最后合并计算结果的场景。例如，用一个Excel保
+ *存了用户所有银行流水，每个Sheet保存一个账户近一年的每笔银行流水，现在需要统计用户
+ *的日均银行流水，先用多线程处理每个sheet里的银行流水，都执行完之后，得到每个sheet的日
+ *均银行流水，最后，再用barrierAction用这些线程的计算结果，计算出整个Excel的日均银行流
+ *水
  *
  */
 public class BankWaterService implements Runnable {
@@ -26,6 +32,7 @@ public class BankWaterService implements Runnable {
 	 */
 	private Executor excutor = Executors.newFixedThreadPool(4);
 	
+	// 
 	private AtomicInteger threadCount = new AtomicInteger(1);
 	
 	/**
@@ -40,7 +47,9 @@ public class BankWaterService implements Runnable {
 				@Override
 				public void run() {
 					// 计算每一个sheet的结果（忽略该处代码）
-					sheetBankWaterCount.put(Thread.currentThread().getName(), 1);
+					
+					// 模拟
+					sheetBankWaterCount.put(Thread.currentThread().getName() + threadCount.incrementAndGet(), 1);
 					try {
 						// 银流计算完插入一个屏障
 						c.await();
@@ -59,6 +68,7 @@ public class BankWaterService implements Runnable {
 		// 汇总每个sheet计算出结果
 		for (Entry<String, Integer> sheet : sheetBankWaterCount.entrySet()) {
 			result += sheet.getValue();
+			System.out.println(sheet.getKey());
 		}
 		// 将结果输出
 		sheetBankWaterCount.put("result", result);
