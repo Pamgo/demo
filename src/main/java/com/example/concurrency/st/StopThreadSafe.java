@@ -21,7 +21,7 @@ public class StopThreadSafe {
 	
 	public static class ChangeObjectThread extends Thread {
 		
-		volatile boolean stop = false;
+		volatile boolean stop = false;  // 用于多线程停止
 		
 		public void stopMe() {
 			stop = true;
