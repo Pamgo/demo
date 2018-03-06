@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
 /**
  * Semaphore(信号量)是用来控制同时访问特定资源的线程数量，它通过协调各个线程，以保证合理的使用公共资源
  * @author OKali
- *
+ * 例子：淘宝愚公项目yugong TableController 简单利用信号量控制table并发数
  */
 public class SemaphoreTest {
 	
