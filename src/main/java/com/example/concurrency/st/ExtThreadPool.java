@@ -60,6 +60,7 @@ public class ExtThreadPool {
 			Thread.sleep(10);
 		}
 		es.shutdown();
+		System.out.println(Runtime.getRuntime().availableProcessors());
 	}
 
 }
