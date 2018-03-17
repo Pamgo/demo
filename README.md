@@ -15,3 +15,6 @@
 
 * Spring源码原理案例等基础：
 	> com.example.cache,com.okali.ioc
+
+* 并发编程与高并发解决方案系统学习研究：
+	> com.okali.concurrency
