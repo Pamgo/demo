@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
  * @author OKali
  *
  */
-@Slf4j
 public class MapExample {
 	
 	private static final Logger LOG = Logger.getLogger(CountExample1.class);
