@@ -13,9 +13,8 @@ import lombok.extern.slf4j.Slf4j;
  * @author OKali
  *
  */
+@Slf4j
 public class CountExample1 {
-	
-	private static final Logger LOG = Logger.getLogger(CountExample1.class);
 	
 	// 请求总数
 	public static int clientTotal = 5000;
@@ -37,13 +36,13 @@ public class CountExample1 {
 						add();
 						semaphore.release(); // 释放一个许可
 					} catch (InterruptedException e) {
-						LOG.error("exception", e);
+						log.error("exception", e);
 					} 
 				}
 			});
 		}
 		executorService.shutdown();
-		LOG.info("count:" + count);
+		log.info("count:{}", count);
 	}
 
 	private static void add() {
