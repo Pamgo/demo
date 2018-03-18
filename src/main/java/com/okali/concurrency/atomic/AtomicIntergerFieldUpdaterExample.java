@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 import com.annotation.ThreadSafe;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -12,6 +13,7 @@ public class AtomicIntergerFieldUpdaterExample {
 
 	private static AtomicIntegerFieldUpdater<AtomicIntergerFieldUpdaterExample> updater 
 											= AtomicIntegerFieldUpdater.newUpdater(AtomicIntergerFieldUpdaterExample.class, "count");
+	@Getter
 	private volatile int count = 100;  // 必须volatile修饰
 	
 	private static AtomicIntergerFieldUpdaterExample example = new AtomicIntergerFieldUpdaterExample();
@@ -27,13 +29,4 @@ public class AtomicIntergerFieldUpdaterExample {
 		}
 	}
 
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-	
-	
 }
