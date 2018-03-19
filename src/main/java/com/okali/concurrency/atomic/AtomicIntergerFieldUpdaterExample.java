@@ -7,6 +7,11 @@ import com.annotation.ThreadSafe;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 演示CAS算法
+ * @author OKali
+ *
+ */
 @Slf4j
 @ThreadSafe("线程安全")
 public class AtomicIntergerFieldUpdaterExample {
