@@ -3,6 +3,8 @@ package com.okali.concurrency.sync;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.annotation.Recommend;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -45,6 +47,7 @@ public class SynchronizedExample {
 	}
 	
 	// 修饰一个静态方法
+	@Recommend("修饰一个静态方法")
 	public static synchronized void test4 () {
 		synchronized (lock) {
 			for (int i = 0; i < 10; i++) {

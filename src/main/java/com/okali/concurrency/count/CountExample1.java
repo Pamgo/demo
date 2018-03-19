@@ -6,6 +6,8 @@ import java.util.concurrent.Semaphore;
 
 import org.apache.log4j.Logger;
 
+import com.annotation.NotThreadSafe;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
+@NotThreadSafe
 public class CountExample1 {
 	
 	// 请求总数
@@ -21,7 +24,7 @@ public class CountExample1 {
 	// 同时并发执行的线程数
 	public static int threadTotal = 200;
 	
-	public static long count = 0;
+	public static /*volatile*/ long count = 0; // 使用volatile进行加操作是不适合线程安全的,适合标志性
 	
 	public static void main(String[] args) {
 		ExecutorService executorService = Executors.newCachedThreadPool();
