@@ -47,9 +47,9 @@ public class HashMapExample {
 					} catch (InterruptedException e) {
 						log.error("exception", e);
 					}
+					latch.countDown();  // 每一个请求减一
 				}
 			});
-			latch.countDown();  // 每一个请求减一
 		}
 		
 		latch.await(); // latch为0的时候输出结果
