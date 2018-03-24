@@ -1,32 +1,35 @@
-package com.okali.concurrency.controller;
+package com.okali.concurrency.syncContainer;
 
-import java.util.Vector;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import com.annotation.ThreadSafe;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
+/**
+ * HashSet
+ * @author OKali
+ *
+ */
 @Slf4j
-public class TestController {
-	
-	// 请求总数
-	public int clientTotal = 5000;
-	// 并发数
-	public int threadTotal = 200;
-	
-	//private Vector<Integer> vector =null;
+@ThreadSafe
+public class HashTableExample {
 
-	@RequestMapping("/test")
-	@ResponseBody
-	public String test() throws InterruptedException {
-        final Vector<Integer> vector = new Vector<>();
+	// 请求总数
+	public static int clientTotal = 5000;
+	// 并发数
+	public static int threadTotal = 200;
+	
+	private static Map<Integer, Integer> map = new Hashtable<>();
+	
+	public static void main(String[] args) throws InterruptedException {
+		
 		ExecutorService exec = Executors.newCachedThreadPool();
 		final Semaphore semaphore = new Semaphore(threadTotal);
 		final CountDownLatch latch = new CountDownLatch(clientTotal);
@@ -38,24 +41,22 @@ public class TestController {
 				public void run() {
 					try {
 						semaphore.acquire();
-						update(vector,count);
+						update(count);
 						semaphore.release();
 					} catch (InterruptedException e) {
 						log.error("exception", e);
 					}
-					latch.countDown();  // 线程池执行完立即调用
+					latch.countDown();  // 线程池实际执行完之后调用，每一个请求减一
 				}
 			});
 		}
 		
 		latch.await(); // latch为0的时候输出结果
 		exec.shutdown();
-		log.info("size:{}",vector.size());
-		log.info("test!");
-		return "test";
+		log.info("size:{}",map.entrySet().size());
 	}
 	
-	private void update (Vector<Integer> vector, int i) {
-		vector.add(i);
+	private static void update (int i) {
+		map.put(i, i);
 	}
 }
