@@ -7,7 +7,7 @@ import java.util.concurrent.FutureTask;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FutrueTaskExample {
+public class FutureTaskExample {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		FutureTask<String> future = new FutureTask<>(new Callable<String>() {
