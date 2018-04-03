@@ -8,3 +8,9 @@
 8、使用Semaphore创建有界的访问
 9、宁可使用同步代码块，也不是用同步方法
 10、避免使用静态变量（静态变量在并发下存在很多问题）
+
+================================================================
+启动kafka
+1、先启动zookeeper
+2、然后启动kafka
+xx>bin>.\kafka-server-start.sh config/server.properties
