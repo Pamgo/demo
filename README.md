@@ -22,6 +22,9 @@
 * 并发编程与高并发解决方案系统学习研究：
 	> com.okali.concurrency
 	
+* Kafka与RabbitMQ简单演示：
+	> com.okali.concurrency.mq
+	
 ========================================================	
 
 JVM的GC日志的主要参数
