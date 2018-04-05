@@ -1,4 +1,4 @@
-package com.okali.db.masterAndslaveDB;
+package com.okali.db.masterSlaveConfig;
 
 /**
  * 定义支持的数据源id

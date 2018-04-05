@@ -1,4 +1,4 @@
-package com.okali.db.masterAndslaveDB;
+package com.okali.db.masterSlaveConfig;
 
 import javax.sql.DataSource;
 

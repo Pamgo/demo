@@ -1,4 +1,4 @@
-package com.okali.db.masterAndslaveDB;
+package com.okali.db.masterSlaveConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
