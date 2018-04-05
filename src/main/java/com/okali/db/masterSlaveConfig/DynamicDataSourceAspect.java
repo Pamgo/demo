@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DynamicDataSourceAspect {
 
-	@Before("@annotation(RoutingDataSource")
+	@Before("@annotation(RoutingDataSource)")
 	public void beforeSwitchDs(JoinPoint point) {
 		
 		// 获得当前访问的class

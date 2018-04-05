@@ -4,6 +4,11 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 动态数据源，继承AbstractRoutingDataSource并重写determineCurrentLookupKey()方法
+ * @author OKali
+ *
+ */
 @Slf4j
 public class DynamicDataSource extends AbstractRoutingDataSource{
 

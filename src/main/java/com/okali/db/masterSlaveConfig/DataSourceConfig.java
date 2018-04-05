@@ -27,6 +27,7 @@ public class DataSourceConfig {
 	 * @return
 	 */
 	@Bean(destroyMethod = "close", name = DataSources.SLAVE_DB)
+	@ConfigurationProperties(prefix="spring.datasourceSlave")
 	public DataSource dataSourceSlave() {
 		return DataSourceBuilder.create().type(DruidDataSource.class).build();
 	}
