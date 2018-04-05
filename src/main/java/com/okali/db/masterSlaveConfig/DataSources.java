@@ -10,4 +10,6 @@ public interface DataSources {
 	String MASTER_DB = "masterDB";
 	
 	String SLAVE_DB = "slaveDB";
+	
+	String LOG_BD = "logDB";
 }

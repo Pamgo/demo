@@ -15,6 +15,11 @@ import org.springframework.context.annotation.Configuration;
 
 import com.google.common.collect.Maps;
 
+/**
+ * 配置成动态数据源
+ * @author OKali
+ *
+ */
 @Configuration
 @MapperScan(basePackages = {"com.okali.db.business.dao"})
 public class MybatisConfig {
