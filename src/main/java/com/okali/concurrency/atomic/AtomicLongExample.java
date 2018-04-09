@@ -18,7 +18,7 @@ public class AtomicLongExample {
 	// 并发数
 	public static int threeadTotal = 200;
 	
-	public static AtomicLong  count = new AtomicLong(0); // 线程安全（原子性操作）.java8中新增一个类似的累LongAdder(高并发的时候推荐使用)
+	public static AtomicLong  count = new AtomicLong(0); // 线程安全（原子性操作）.java8中新增一个类似的类LongAdder(高并发的时候推荐使用)
 	
 	public static void main(String[] args) throws InterruptedException {
 		

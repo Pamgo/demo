@@ -23,6 +23,7 @@ public class Escape {
 	
 	private class InnerClass {
 		
+		// 关键代码this
 		public InnerClass() {
 			log.info("{}", Escape.this.thisCanBeEscape);
 		}

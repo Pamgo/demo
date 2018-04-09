@@ -8,7 +8,7 @@ import com.annotation.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *  对一个遍历的同时，对集合进行更像操作。
+ *  对一个遍历的同时，对集合进行更新操作。
  *  如果我们使用了foreach、iterator迭代器循环来循环我们的集合的时候，
  *   尽量不要在操作的过程中进行remove相关的更新操作。
  *  如果一定要进行更新的话：建议方案为，在遍历的过程中把需要的值进行标志，遍历完之后再进行更新操作。

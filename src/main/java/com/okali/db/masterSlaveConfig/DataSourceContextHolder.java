@@ -3,7 +3,7 @@ package com.okali.db.masterSlaveConfig;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 使用ThreadLocal安全的管理当前进程使用的数据源连接
+ * 使用ThreadLocal安全地管理当前进程使用的数据源连接
  * @author OKali
  *
  */

@@ -17,6 +17,7 @@ public class UnsafePublish {
 
 	private String[] states = {"a", "b", "c"};
 	
+	// public暴露给外部调用
 	public String[] getStates() {
 		return states;
 	}

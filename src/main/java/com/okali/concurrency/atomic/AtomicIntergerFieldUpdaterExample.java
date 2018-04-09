@@ -24,7 +24,7 @@ public class AtomicIntergerFieldUpdaterExample {
 	private static AtomicIntergerFieldUpdaterExample example = new AtomicIntergerFieldUpdaterExample();
 	
 	public static void main(String[] args) {
-		if (updater.compareAndSet(example, 100, 120)) { // 如果当前变量中的字段count = 100 ,则更像为200
+		if (updater.compareAndSet(example, 100, 120)) { // 如果当前变量中的字段count = 100 ,则更新为200
 			log.info("update success 1, {}", example.getCount());
 		}
 		if (updater.compareAndSet(example, 100, 120)) {
