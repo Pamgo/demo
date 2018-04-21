@@ -24,7 +24,9 @@
 	
 * Kafka与RabbitMQ简单演示：
 	> com.okali.concurrency.mq
-	
+
+* Netty学习研究：
+	> com.okali.netty
 ========================================================	
 
 JVM的GC日志的主要参数
