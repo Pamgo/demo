@@ -90,7 +90,7 @@ public class MultiplexerTimeServer implements Runnable {
 			if (key.isAcceptable()) {
 				// 接收新连接
 				ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
-				SocketChannel sc = ssc.accept();
+				SocketChannel sc = ssc.accept();	     // 完成TCP三次握手，TCP物理链路正式建立
 				sc.configureBlocking(false);
 				
 				// 向Selector注册监听读操作
@@ -100,11 +100,11 @@ public class MultiplexerTimeServer implements Runnable {
 				// 读取数据
 				SocketChannel sc = (SocketChannel) key.channel();
 				ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-				int readBytes = sc.read(readBuffer);  // 将数据督导buffer
+				int readBytes = sc.read(readBuffer);  // 将数据读到buffer
 				if (readBytes > 0) {
-					readBuffer.flip();
+					readBuffer.flip(); // 将缓冲区当前的limit设置为position，position设置为0，用于后续对缓冲区的读取操作。
 					byte[] bytes = new byte[readBuffer.remaining()];
-					readBuffer.get(bytes);  // 在buffer里拿数据
+					readBuffer.get(bytes);  // 将缓冲区可读的字节数组复制到新创建的字节数组中
 					String body = new String (bytes,"UTF-8");
 					log.info("the time server receive order:" + body);
 					
@@ -112,7 +112,7 @@ public class MultiplexerTimeServer implements Runnable {
 					
 					// 将应答消息发送给客户端
 					doWrite(sc, body+currentTime);
-				} else if (readBytes < 0) {
+				} else if (readBytes < 0) {   // 表示链路已经关闭
 					// 对端链路关闭
 					key.cancel();
 					sc.close();
@@ -124,11 +124,11 @@ public class MultiplexerTimeServer implements Runnable {
 	
 	private void doWrite(SocketChannel channel, String response) throws IOException {
 		if (response != null && response.trim().length() > 0) {
-			byte[] bytes = response.getBytes();
+			byte[] bytes = response.getBytes();    // 将字符串编码成字节数组
 			ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
-			writeBuffer.put(bytes);
+			writeBuffer.put(bytes);    // 将数组赋值到缓冲区中
 			writeBuffer.flip();
-			channel.write(writeBuffer);
+			channel.write(writeBuffer);   // TODO 可能会出现半包问题
 		}
 	}
 	
