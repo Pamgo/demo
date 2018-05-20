@@ -108,7 +108,7 @@ public class MultiplexerTimeServer implements Runnable {
 					String body = new String (bytes,"UTF-8");
 					log.info("the time server receive order:" + body);
 					
-					String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body) ? new Date(System.currentTimeMillis()).toString() : "BAD ORDER";
+					String currentTime = "QUERY-TIME-ORDER".equalsIgnoreCase(body) ? new Date(System.currentTimeMillis()).toString() : " BAD ORDER";
 					
 					// 将应答消息发送给客户端
 					doWrite(sc, body+currentTime);

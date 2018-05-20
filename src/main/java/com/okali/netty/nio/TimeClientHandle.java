@@ -91,7 +91,7 @@ public class TimeClientHandle implements Runnable {
 			SocketChannel sc = (SocketChannel) key.channel();
 			if (key.isConnectable()) {
 				if (sc.finishConnect()) {
-					sc.register(selector, SelectionKey.OP_READ);
+					sc.register(selector, SelectionKey.OP_READ);  // 监听网络读操作，然后发送消息给服务端
 					doWrite(sc);
 				} else {
 					log.warn("连接失败，进程退出");
@@ -129,7 +129,7 @@ public class TimeClientHandle implements Runnable {
 	}
 
 	private void doWrite(SocketChannel sc) throws IOException {
-		byte[] req = "QUERY TIME ORDER ".getBytes();
+		byte[] req = "QUERY-TIME-ORDER".getBytes();
 		ByteBuffer writeBuffer = ByteBuffer.allocate(req.length);
 		writeBuffer.put(req);
 		writeBuffer.flip();
