@@ -1,0 +1,12 @@
+Netty:
+1、异步事件驱动框架，用于快熟开发高性能服务端和客户端
+2、封装了JDK底层BIO和NIO模型，提供高可用的API
+3、自带编解码器解决拆包粘包问题，用户只用关心业务逻辑
+4、精心设计的reactor线程模型支持高并发海量连接
+
+-----------------------------------------------------
+NioEventLoop --> Thread   监听客户端连接和读写
+Channel-->Socket
+Pipeline   逻辑处理链
+ChannelHandler
+ByteBuf
