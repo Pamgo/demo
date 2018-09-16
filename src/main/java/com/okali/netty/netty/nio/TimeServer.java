@@ -1,4 +1,4 @@
-package com.okali.netty.net;
+package com.okali.netty.netty.nio;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,6 +8,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 public class TimeServer {
 
@@ -16,11 +18,11 @@ public class TimeServer {
 		// 服务端持有两个EventLoopGroup，
 		// 其中boss组是专门用来接收客户端发来的TCP链接请求的，
 		// worker组是专门用来具体处理完成 三次握手的链接套接字的网络IO请求的
-		EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+		EventLoopGroup bossGroup = new NioEventLoopGroup(1); //[线程组，默认2*cpu] Runtime.getRuntime().availableProcessors() * 2
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		
 		try {
-			ServerBootstrap b = new ServerBootstrap();
+			ServerBootstrap b = new ServerBootstrap();  // 启动NIO服务端的辅助启动类，目的降低服务端的开发复杂度
 			b.group(bossGroup,workerGroup)
 				.channel(NioServerSocketChannel.class) // 注册到bossGroup上 // 设置服务端socketchannel
 				.option(ChannelOption.SO_BACKLOG, 1024)
@@ -42,12 +44,14 @@ public class TimeServer {
 
 		@Override
 		protected void initChannel(SocketChannel arg0) throws Exception {
+			arg0.pipeline().addLast(new LineBasedFrameDecoder(1024));  // 添加节码器
+			arg0.pipeline().addLast(new StringDecoder());
 			arg0.pipeline().addLast(new TimeServerHandler());
 		}
 	}
 	
 	public static void main(String[] args) throws Exception {
-		int port = 8080;
+		int port = 7001;
 		if (args != null && args.length > 0) {
 			port = Integer.valueOf(args[0]);
 		}

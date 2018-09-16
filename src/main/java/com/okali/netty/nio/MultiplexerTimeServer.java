@@ -51,7 +51,7 @@ public class MultiplexerTimeServer implements Runnable {
 	public void run() {
 		while (!stop) {
 			try {
-				selector.select(1000);
+				selector.select(1000); // 当注册事件到达时，方法返回，该方法会阻塞一秒
 				Set<SelectionKey> keys = selector.selectedKeys();
 				Iterator<SelectionKey> it = keys.iterator();
 				SelectionKey key = null;

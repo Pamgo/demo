@@ -1,4 +1,4 @@
-package com.okali.netty.net;
+package com.okali.netty.netty.nio;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,6 +8,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 public class TimeClient {
 
@@ -23,6 +25,8 @@ public class TimeClient {
 
 				@Override
 				protected void initChannel(SocketChannel ch) throws Exception {
+					ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+					ch.pipeline().addLast(new StringDecoder());
 					ch.pipeline().addLast(new TimeClientHandler());
 				}
 			});

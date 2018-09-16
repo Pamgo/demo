@@ -1,4 +1,4 @@
-package com.okali.netty.net;
+package com.okali.netty.netty.nio;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

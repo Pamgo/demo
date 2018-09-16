@@ -1,8 +1,4 @@
-package com.okali.netty.net;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+package com.okali.netty.netty.nio;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -21,6 +17,7 @@ public class TimeClientHandler  extends ChannelInboundHandlerAdapter{
 		firstMessage.writeBytes(req);
 	}
 	
+	// 当客户端和服务端TCP链路建立成功之后，调用
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		ctx.writeAndFlush(firstMessage);
